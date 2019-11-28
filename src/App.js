@@ -25,7 +25,7 @@ class App extends Component {
     };
   }
   componentWillMount() {
-    return fetch("https://facebook.github.io/react-native/movies.json")
+    return fetch("https://qr-settlement.appspot.com/users")
       .then(response => response.json())
       .then(responseJson => {
         this.setState({
