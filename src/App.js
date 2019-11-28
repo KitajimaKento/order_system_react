@@ -20,23 +20,25 @@ const data = React.createContext(store_data); //ここを2つに出来ないか�
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: false
-    };
+    this.state = {};
   }
   componentWillMount() {
-    return fetch("https://qr-settlement.appspot.com/users")
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          title: responseJson.title,
-          movies: responseJson.movies
-        });
-        console.log(responseJson);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    return (
+      fetch("https://qr-settlement.appspot.com/users")
+        //return fetch("https://facebook.github.io/react-native/movies.json")
+        .then(response => response.json())
+        .then(responseJson => {
+          this.setState({
+            //title: responseJson.title,
+            //movies: responseJson.movies,
+            name: responseJson.data[0].name
+          });
+          console.log(responseJson);
+        })
+        .catch(error => {
+          console.error(error);
+        })
+    );
   }
 
   render() {
@@ -45,6 +47,7 @@ class App extends Component {
       console.log(state.data);
       console.log(state.data.title);
     }
+    console.log(state.data);
     return (
       <div>
         <Head />
@@ -110,7 +113,7 @@ class Body extends Component {
             </section>
 
             <section className="map">
-              {this.props.value.title}
+              {this.props.value.name}
               <h1>なにか説明</h1>
             </section>
 
